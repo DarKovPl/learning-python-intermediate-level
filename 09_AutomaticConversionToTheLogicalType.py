@@ -75,12 +75,12 @@
 option_list = [' load data', ' export data', ' analyze & predict']
 chosen_option = 0
 
-#  The loop will be working as far as the chosen_option value is
+#  the loop will be working as far as the chosen_option value is
 #  below or above range or entered character is improper
 while not chosen_option:
 
     try:
-        # here user enter of his choice, but before that he see the list of option to choose
+        # here user enters of his choice, but before that he sees the list of option to choose
         # and its assigned number to written.
         chosen_option = input('Please choose one of the options: \n{}.'
                               '\nEnter the number of your choice here -->'
@@ -101,39 +101,7 @@ while not chosen_option:
                   else "Your entered value '%d' is below the range" % int(chosen_option))
             chosen_option = 0
 
-    # if user enter something else to integer program show him what is wrong and the loop start again
+    # if user enters something else to integer program show him what is wrong and the loop start again
     except ValueError as e:
         print("\nThis error has occurred: '%s'." % e, 'Please enter the correct INT value from list.')
         chosen_option = 0
-
-
-
-
-
-# def DisplayOptions(options):
-#     for i in range(len(options)):
-#         print("{} - {}".format(i + 1, options[i]))
-#
-#     choice = input('Select option above or press enter to exit: ')
-#     return choice
-#
-#
-# choice = 'x'
-# options = ['load data', 'export data', 'analyze & predict']
-#
-# while choice:
-#
-#     choice = DisplayOptions(options)
-#
-#     # executed only if something was entered
-#     if choice:
-#         try:
-#             choice_num = int(choice) - 1
-#             if choice_num >= 0 and choice_num < len(options):
-#                 print("you have selected {} - {}".format(choice_num + 1, options[choice_num]))
-#             else:
-#                 print("choose a value from a list or press enter")
-#         except:
-#             print("You need to enter a number")
-#     else:
-#         print('----- END -----')

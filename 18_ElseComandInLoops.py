@@ -38,25 +38,32 @@ print('-------------------------------------------------------------------')
 # Lab
 
 data_dir = r'/tmp/data_dir/'
+
+if not os.path.isdir(data_dir):
+    os.mkdir(data_dir)
+
 pages = [
 
     {'name': 'mobilo',          'url': 'http://www.mobilo24.eu/'},
 
-    {'name': 'nonexistent',     'url': 'http://abc.cde.fgh.ijk.pl/'},
+{ 'name': 'nonexistent', 'url': 'http://abc.cde.fgh.ijk.pl/' },
 
     {'name': 'kursy',           'url': 'http://www.kursyonline24.eu/'}]
 
 for page in pages:
 
     try:
+        path = os.path.join(data_dir, page.get('name')) + '.html'
+        print("Creating the file '{}' where will be saved content from the site.".format(path))
 
-        path = data_dir + page.get('name') + '.html'
         urllib.request.urlretrieve(page.get('url'), path)
-
+        print("Downloading data from the site: {}".format(page.get('url')))
+        print('-' * 20)
 
     except:
-        print(sys.exc_info())
+        print('-' * 20)
+        print('Error has occurred: "' + str(sys.exc_info()) + '" and the process was stopped.')
         break
 
 else:
-    print('ok')
+    print('Everything was done successfully.')

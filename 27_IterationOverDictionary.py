@@ -23,10 +23,8 @@ banknotes_coins = [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 20
 
 dict_denominations = {}
 
-if len(dict_denominations) <= 0:
-
-    for item in banknotes_coins:
-        dict_denominations.update({item: 0})
+for item in banknotes_coins:
+    dict_denominations.update({item: 0})
 
 dict_denominations[100] += 1
 dict_denominations[20] += 1

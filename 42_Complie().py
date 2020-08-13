@@ -33,27 +33,51 @@ print('-------------------------------------------------------------------')
 
 path_to_formulas = r"/tmp/formulas_list"
 
-str_formulas_lists = '''formulas_list = [
-    "abs(x**3 - x**0.5)",
-    "abs(math.sin(x) * x**2)"
-]'''
+str_formulas_lists = '''formulas_list += ["abs(x**3 - x**0.5)", "abs(math.sin(x) * x**2)"]'''
+
 
 if not os.path.isfile(r"/tmp/formulas_list"):
     with open(path_to_formulas, 'w') as file:
         file.write(str_formulas_lists)
 
-with open(path_to_formulas, 'r') as f:
-    imported_formulas_from_file = f.readlines()
-    zebra = imported_formulas_from_file.pop(1)[:-2].lstrip()
 
-    to_string = ''.join(g for g in zebra)
+with open(path_to_formulas, 'r') as f:
+    formulas_list = []
+    exec(f.read())
+
+time_with_compile = time.time()
+for item in formulas_list:
+    print('Currently formula is executing: {}'.format(item))
 
     argument_list = []
     for i in range(1000000):
         argument_list.append(i / 10)
 
-    for divided in argument_list:
-        to_almost_compiling = to_string.replace('x', str(divided))
+    result_list = []
+    compiled_formula = compile(item, '/tmp/formulas_list', 'eval')
+    for x in argument_list:
+        result_list.append(eval(compiled_formula))
 
-compiled_formulas_list = compile(to_almost_compiling, r'/tmp/formulas_list', 'eval')
-print(eval(compiled_formulas_list))
+    print('Min value: {}'.format(min(result_list)), 'Max value: {}'.format(max(result_list)))
+
+end_time = time.time()
+print('Process time with compiled code: {}'.format(round(end_time - time_with_compile, 3)))
+print('-------------------------------------------------------------------')
+
+time_with_compile = time.time()
+for item in formulas_list:
+    print('Currently formula is executing: {}'.format(item))
+
+    argument_list = []
+    for i in range(1000000):
+        argument_list.append(i / 10)
+
+    result_list = []
+
+    for x in argument_list:
+        result_list.append(eval(item))
+
+    print('Min value: {}'.format(min(result_list)), 'Max value: {}'.format(max(result_list)))
+
+end_time = time.time()
+print('Process time WITHOUT compiled code: {}'.format(round(end_time - time_with_compile, 3)))

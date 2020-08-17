@@ -17,7 +17,7 @@ import os
 
 # Lab
 
-def calculate_paint(efficiency_m2_per_ltr=4.2, *args):
+def calculate_paint(efficiency_m2_per_ltr, *args):
     """this function is counting the quantity of paint needed to paint
        stated meters by the customer"""
     counter = 0
@@ -36,6 +36,7 @@ print('-------------------------------------------------------------------')
 
 
 def log_it(path_to_file=r'/tmp/log_it.txt', *args):
+    """this function writing expression from user to a file"""
     str_command = args
     with open(path_to_file, 'a+') as file:
         for item in str_command:

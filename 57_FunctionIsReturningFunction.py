@@ -1,6 +1,3 @@
-import time
-
-
 def calculate(kind='+', *args):
     result = 0
     if kind == '+':
@@ -38,18 +35,31 @@ print(f_sub(10, 20, 30))
 print('-------------------------------------------------------------------')
 
 # Lab
+units = {'minutes': 60, 'hours': 3600, 'days': 86400}
 
-# def main_function(date):
-#     f_minutes_variable = ''''''
+
+def main_function(enter_date=input("Please enter here the date 'RRRR-MM-DD HH MM SS': "),
+                  units_of_time=input('Please chose which unit of date you want to work?\n{}\n'
+                                      'Enter chosen value here-->'
+                                      ''.format('\n'.join(unit + '-' + str(val) for unit, val in units.items())))):
+    f_minutes_variable = """
+from dateutil import parser
 from datetime import datetime
 
 
-def f_minutes(input_date=(2020, 10, 10),
-              time=datetime.now()):
-    z = datetime.(input_date)
-    result = z - time
+def f_time(input_date=parser.parse(str({})),
+           current_time=datetime.now(), unit={}):
 
-    return print(result)
+    result = current_time - input_date
+    seconds = result.total_seconds()
+    output =  round(round(seconds, 0) / unit, 0)
+
+    return output
+""".format(enter_date, units_of_time)
+    exec(f_minutes_variable, globals())
+
+    return f_time()
 
 
-f_minutes()
+print(main_function())
+

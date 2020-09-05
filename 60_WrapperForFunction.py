@@ -75,11 +75,11 @@ def get_sequence_wrapper(function):
         time_start = time.time()
         result = function(*args)
         time_stop = time.time()
-        counted_time = time_stop - time_start
 
-        print(counted_time)
+        print(f'Function name: "{function.__name__}" and time of its work:'
+              f' {time_stop - time_start}')
 
-        return counted_time
+        return result
     return _wrapped_function
 
 
@@ -94,4 +94,4 @@ def get_sequence(n):
         return v
 
 
-print(get_sequence(12))
+print(get_sequence(14))

@@ -86,17 +86,18 @@ import os
 # Lab
 
 
-def wrapper_for_logging_actions(file_path):
+def wrapper_func_for_logging_actions(file_path):
     def wrapping_function(func):
         def _wrapper(*args):
+            """This wrapper is able to create a log file when the program is doing something
+             with files. For example, when some file was created and it had been deleted,
+              the program will save both of these actions in a log file. ."""
+            func_name_var = func.__name__
+            statement = f'Action "{func_name_var}" executed on {file_path} on {datetime.datetime.now().isoformat()}\n'
 
-            z = func.__name__
-            print('Log is going to be written')
-            statement = f'Action "{z}" executed on {file_path} on {datetime.datetime.now().isoformat()}\n'
-
+            print('Log is going to be written:')
             with open(file_path, 'a+') as file:
                 file.write(statement)
-
             print(statement)
 
             return statement
@@ -106,18 +107,16 @@ def wrapper_for_logging_actions(file_path):
     return wrapping_function
 
 
-@wrapper_for_logging_actions(r'/tmp/create_log_file.txt')
+@wrapper_func_for_logging_actions(r'/tmp/create_log_file.txt')
 def create_file(path):
     print('creating file {}'.format(path))
     open(path, "w+")
-    return create_file.__name__
 
 
-@wrapper_for_logging_actions(r'/tmp/delete_log_file.txt')
+@wrapper_func_for_logging_actions(r'/tmp/delete_log_file.txt')
 def delete_file(path):
     print('deleting file {}'.format(path))
     os.remove(path)
-    return create_file.__name__
 
 
 create_file(r'/tmp/dummy_file.txt')

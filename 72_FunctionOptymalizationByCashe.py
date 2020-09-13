@@ -31,22 +31,7 @@ import functools
 
 #  Lab
 
-def time_counting_function(func):
-    def _counting_fib(*args):
-        start = time.time()
-        fib_result = func(*args)
-        print('------', args)
-        for i in args:
-            stop = time.time()
-            time_result = stop - start
-            print(f'Fibonacci word: {i} and the number: {fib_result}. '
-                  f'Work time {time_result}')
-        return fib_result
-
-    return _counting_fib
-
-
-@time_counting_function
+@functools.lru_cache(maxsize=100)
 def fib(n):
     if n <= 2:
         result = n
@@ -55,4 +40,16 @@ def fib(n):
 
     return result
 
-fib(6)
+
+def range_loop(ran):
+    tim_start = time.time()
+    for i in range(ran):
+        fib_result = fib(i)
+        print(f'Fibonacci word: {i} and the number: {fib_result}. Work time {round(time.time() - tim_start, 4)}')
+
+
+range_loop(11)
+print(fib.cache_info())
+
+range_loop(12)
+print(fib.cache_info())

@@ -30,16 +30,21 @@ class Cake:
         self.wage = wage
 
 
-cake_01 = Cake('Pear-Ginger Pie', 'Pie', 'Ginger', addictions=['6 large pears', 'sugar', 'crystallized ginger',
+cake_01 = Cake('Pear-Ginger Pie', 'Pie', 'Ginger', addictions=['large pears', 'sugar', 'crystallized ginger',
                                                                'cornstarch', 'orange juice', 'cinnamon'],
                filling='Stuffed with pears', wage=1.8)
 
-cake_02 = Cake('Italian Rainbow', 'Cookies', 'Raspberry jam', addictions=['Almonds', '4 eggs',
-                                                                          '0,5 cup of raspberry jam',
+cake_02 = Cake('Italian Rainbow', 'Cookies', 'Raspberry jam', addictions=['Almonds', 'eggs',
+                                                                          'cup of raspberry jam',
                                                                           'semisweet chocolate'],
                filling='Layers of almond and coated in chocolate', wage=0.5)
-cake_03 = Cake('Banana Cream', 'Pie', 'Almond-Banana Cream', addictions=['Almond cream', '6 medium bananas',
-                                                                         '1 cup whipping cream', 'flour'],
+cake_03 = Cake('Banana Cream', 'Pie', 'Almond-Banana Cream', addictions=['Almond cream', 'medium bananas',
+                                                                         'whipping cream', 'flour'],
                filling='Covered whipping cream', wage=0.9)
 
 bakery_offer = [cake_01, cake_02, cake_03]
+
+print("Today's offer is:")
+for elm in bakery_offer:
+    print(f"{elm.name} - ({elm.kind}) main taste: {elm.taste} with additives of {elm.addictions} filed with"
+          f" {elm.filling} total weight: {elm.wage}\n", '-' * 60)

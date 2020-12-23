@@ -63,7 +63,7 @@ def f_time(units_of_time, input_date=parser.parse('{}'),
     return f_time
 
 
-input_date_to_main = input("Please enter here the date 'RRRR-MM-DD HH MM SS': ")
+input_date_to_main = input("Please enter here the date 'RRRR-MM-DD HHMMSS': ")
 choose_unit = input('Please choose which unit of the time you want to work?\n{}\nEnter chosen value here-->'
                     ''.format('\n'.join(unit + '-' + str(val) for unit, val in units.items())))
 

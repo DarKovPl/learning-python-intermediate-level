@@ -1,5 +1,6 @@
 brandOnSale = 'Opel'
 
+
 class Car:
     number_of_cars = 0
     list_of_cars = []
@@ -57,13 +58,12 @@ print(f"Status of cars: {car_01.brand, car_01.IS_ON_SALE} {car_02.brand, car_02.
 # Lab
 
 class Cake:
-
     known_types = ['cake', 'muffin', 'meringue', 'biscuit', 'eclair',
                    'christmas', 'pretzel', 'other']
 
     bakery_offer = []
 
-    def __init__(self, name, kind, taste, additives, filling, wage, gluten_free=False, text='.'):
+    def __init__(self, name, kind, taste, additives, filling, wage, gluten_free=False, text=''):
         self.name = name
         if str(kind).lower() in self.known_types:
             self.kind = kind
@@ -74,10 +74,10 @@ class Cake:
         self.filling = filling
         self.wage = wage
         self.__gluten_free = gluten_free
-        if self.kind == 'Cake' or text == "":
+        if self.kind == 'Cake' or text == '':
             self.__text = text
         else:
-            print("Conditions aren't achieved")
+            self.__text = "This confectionery is not a cake, and we can't add any birthday wishes"
         Cake.bakery_offer.append(self)
 
     def show_info(self):
@@ -90,7 +90,7 @@ class Cake:
             print(f'Filling:\n\t{self.filling}')
         print(f'Wage: {self.wage}')
         print('This product is gluten free' if self.__gluten_free else 'This product has gluten')
-        
+        print(f'Text on the Cake: {self.text_properties}')
 
     def set_filling(self, add_filling):
         self.filling = add_filling
@@ -102,10 +102,10 @@ class Cake:
         return self.__text
 
     def __set_text(self, new_text):
-        new_text = self.__text if self.kind == "Cake" else print('Conditions')
+        self.__text = new_text if self.kind == 'Cake' else "This confectionery is not a cake," \
+                                                           " and we can't add any birthday wishes"
 
-
-    Text = property(__get_text, __set_text, None, 'bla')
+    text_properties = property(__get_text, __set_text, None, '''Some documentation about this property''')
 
 
 cake_01 = Cake('Pear-Ginger Pie', 'Cake', 'Ginger',
@@ -113,27 +113,21 @@ cake_01 = Cake('Pear-Ginger Pie', 'Cake', 'Ginger',
                           'orange juice', 'cinnamon'], filling='', wage=1.8)
 
 cake_02 = Cake('Italian Rainbow', 'Biscuit', 'Raspberry jam', additives=[],
-               filling='Layers of almond and coated in chocolate', wage=0.5)
+               filling='Layers of almond and coated in chocolate', wage=0.5, text='This is not a cake')
 
 cake_03 = Cake('Banana Cream', 'Cake', 'Almond-Banana Cream',
                additives=['Almond cream', 'bananas',
-                          'whipping cream'], filling='Covered whipping cream', wage=0.9,
-               gluten_free=True)
+                          'whipping cream'], filling='Covered whipping cream', wage=0.9, gluten_free=True)
 
 cake_04 = Cake('Cocoa waffle', 'Waffle', 'Cocoa', [], 'Cocoa', 1.2)
 
-
 cake_01.set_filling('Stuffed with pears')
 cake_02.add_additives(['Almonds', 'raspberry jam', 'semisweet chocolate'])
-cake_01.Text('Some text')
+
+cake_03.text_properties = 'Happy Birthday !!!!!!!!!!!!!!!!'
+cake_04.text_properties = 'Enjoy'
 
 print("Today's offer is:")
 for elem in Cake.bakery_offer:
     print('*' * 70)
     elem.show_info()
-
-
-# cake_03.__gluten_free = False
-# print(dir(cake_03))
-# cake_03._Cake__gluten_free = False
-# cake_03.show_info()

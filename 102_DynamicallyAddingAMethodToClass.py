@@ -114,8 +114,7 @@ import glob
 
 #  Lab
 
-
-def export_1_cake_to_html(cls, path):
+def export_1_cake_to_html(obj, path):
     template = """
 <table border=1>
      <tr>
@@ -140,8 +139,67 @@ def export_1_cake_to_html(cls, path):
 </table>"""
 
     with open(path, "w") as f:
-        for c in cls.bakery_offer:
-            content = template.format(c.name, c.kind, c.taste, c.additives, c.filling)
+        content = template.format(obj.name, obj.kind, obj.taste, obj.additives, obj.filling)
+        f.write(content)
+
+
+def export_all_cake_to_html_class(cls, path):
+    template = """
+<table border=1>
+     <tr>
+       <th colspan=2>{}</th>
+     </tr>
+       <tr>
+         <td>Kind</td>
+         <td>{}</td>
+       </tr>
+       <tr>
+         <td>Taste</td>
+         <td>{}</td>
+       </tr>
+       <tr>
+         <td>Additives</td>
+         <td>{}</td>
+       </tr>
+       <tr>
+         <td>Filling</td>
+         <td>{}</td>
+       </tr>
+</table>"""
+
+    with open(path, "w") as f:
+        for obj in cls.bakery_offer:
+            content = template.format(obj.name, obj.kind, obj.taste, obj.additives, obj.filling)
+            f.write(content)
+
+
+def export_all_cake_to_html_instance(self, path):
+    template = """
+<table border=1>
+     <tr>
+       <th colspan=2>{}</th>
+     </tr>
+       <tr>
+         <td>Kind</td>
+         <td>{}</td>
+       </tr>
+       <tr>
+         <td>Taste</td>
+         <td>{}</td>
+       </tr>
+       <tr>
+         <td>Additives</td>
+         <td>{}</td>
+       </tr>
+       <tr>
+         <td>Filling</td>
+         <td>{}</td>
+       </tr>
+</table>"""
+
+    with open(path, "w") as f:
+        for num, obj in enumerate(self.bakery_offer):
+            content = template.format(obj.name, obj.kind, obj.taste, obj.additives, obj.filling)
             f.write(content)
 
 
@@ -167,7 +225,7 @@ class Cake:
         elif self.kind == 'Cake':
             self.__text = text
         else:
-            self.__text = "This confectionery is not a cake, and we can't add any birthday wishes"
+            self.__text = "This baking is not a cake, and we can't add any birthday wishes."
         Cake.bakery_offer.append(self)
 
     def show_info(self):
@@ -232,14 +290,27 @@ cake_02.save_to_file(f'/home/darek/Projects/to_task_96/pickle_file_{cake_02.name
 cake_05 = Cake.read_from_file(f'/home/darek/Projects/to_task_96/pickle_file_{cake_02.name}.bakery')
 print('-' * 60)
 
-Cake.export_1_cake_to_html = types.MethodType(export_1_cake_to_html, Cake)
-Cake.export_1_cake_to_html(path=fr'/home/darek/Projects/to_task_102/{Cake.export_1_cake_to_html.__name__}')
+# Here we are exporting the first cake from the list of our bakery into the html file using a static method.
+Cake.export_1_cake_to_html = export_1_cake_to_html
+Cake.export_1_cake_to_html(Cake.bakery_offer[0], path=fr'/home/darek/Projects/to_task_102/'
+                                                      fr'{Cake.export_1_cake_to_html.__name__}')
+print('-' * 60)
+
+# Here we are exporting the list of all cakes in our bakery to the html file using a class method.
+Cake.export_all_cake_to_html_class = types.MethodType(export_all_cake_to_html_class, Cake)
+Cake.export_all_cake_to_html_class(path=fr'/home/darek/Projects/to_task_102/'
+                                        fr'{Cake.export_all_cake_to_html_class.__name__}')
+print('-' * 60)
+# Here we are exporting the list of all cakes in our bakery to the html file using a class instance.
+Cake.export_all_cake_to_html_instance = types.MethodType(export_all_cake_to_html_instance, Cake)
+# cake_01.export_all_cake_to_html_instance(path=fr'/home/darek/Projects/to_task_102/'
+#                                               fr'{cake_01.export_all_cake_to_html_instance.__name__}')
+# Here we are exporting to different folder separate html files include the name of cakes in its file name
+for c in Cake.bakery_offer:
+    c.export_all_cake_to_html_instance(path=fr"/home/darek/Projects/to_task_102/last/{c.name.replace(' ', '_')}")
 
 print("Today's offer is:")
 for number, elem in enumerate(Cake.bakery_offer):
     print('*' * 70)
     print(f'Number:{number + 1}')
     elem.show_info()
-
-
-

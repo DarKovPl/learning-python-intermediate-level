@@ -95,7 +95,7 @@ class Cake:
         elif self.kind == 'Cake':
             self.__text = text
         else:
-            self.__text = "This confectionery is not a cake, and we can't add any birthday wishes"
+            self.__text = "This baking is not a cake, and we can't add any birthday wishes."
         Cake.bakery_offer.append(self)
 
     def show_info(self):

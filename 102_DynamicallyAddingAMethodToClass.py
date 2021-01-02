@@ -4,112 +4,112 @@ import pickle
 import glob
 
 
-# def export_to_file_static(path, header, data):
-#     with open(path, 'w') as file:
-#         writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-#         writer.writerow(header)
-#         writer.writerow(data)
-#     # just to see that the function was indeed called:
-#     print('>>> This is function export_to_file - static method')
-#
-#
-# def export_to_file_class(cls, path):
-#     with open(path, 'w') as file:
-#         writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-#         writer.writerow(['Brand', 'Model', 'IS_ON_SALE'])
-#         for c in cls.list_of_cars:
-#             writer.writerow([c.brand, c.model, c.IS_ON_SALE])
-#     # just to see that the function was indeed called:
-#     print('>>> This is function export_to_file - class method')
-#
-#
-# def export_to_file_instance(self, path):
-#     with open(path, 'w') as file:
-#         writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-#         writer.writerow(['Brand', 'Model', 'IS_ON_SALE'])
-#         writer.writerow([self.brand, self.model, self.IS_ON_SALE])
-#     # just to see that the function was indeed called:
-#     print('>>> This is function export_to_file - Instance method')
-#
-#
-# brandOnSale = 'Opel'
-#
-#
-# class Car:
-#     number_of_cars = 0
-#     list_of_cars = []
-#
-#     def __init__(self, brand, model, is_airbag_ok, is_painting_ok, is_mechanic_ok, is_on_sale):
-#         self.brand = brand
-#         self.model = model
-#         self.is_airbag_OK = is_airbag_ok
-#         self.is_painting_OK = is_painting_ok
-#         self.is_mechanic_OK = is_mechanic_ok
-#         self.__is_on_sale = is_on_sale
-#
-#         Car.number_of_cars += 1
-#         Car.list_of_cars.append(self)
-#
-#     def is_damaged(self):
-#         return not (self.is_airbag_OK and self.is_painting_OK and self.is_mechanic_OK)
-#
-#     def get_info(self):
-#         print(f'{self.brand} {self.model}'.upper())
-#         print(f'Air Bag -ok- {self.is_airbag_OK}')
-#         print(f'Painting -ok- {self.is_painting_OK}')
-#         print(f'Mechanic -ok- {self.is_mechanic_OK}')
-#         print(f'Is on sale? {self.__is_on_sale}')
-#         print('-' * 60)
-#
-#     def __get_is_on_sale(self):
-#         return self.__is_on_sale
-#
-#     def __set_is_on_sale(self, new_is_on_sale_status):
-#         if self.brand == brandOnSale:
-#             self.__is_on_sale = new_is_on_sale_status
-#             print(f'Changing status is_on_sale to {new_is_on_sale_status} for {self.brand}')
-#         else:
-#             print(f'Cannot change status is_on_sale. Sale is able only for: {brandOnSale}')
-#
-#     # we will write here the name of the variable by a big letter because we want to make this variable unique.
-#     IS_ON_SALE = property(__get_is_on_sale, __set_is_on_sale, None, 'if set to true, the car is available in sale')
-#
-#
-# car_01 = Car('Seat', 'Ibiza', True, True, True, False)
-# car_02 = Car('Opel', 'Corsa', True, False, True, True)
-#
-# print('Static---------' * 10)
-#
-# Car.export_to_file_static = export_to_file_static
-# # export_to_file_static(rf'/home/darek/Projects/to_task_102/{export_to_file_static.__name__}',
-# #                       ['Brand', 'Model', 'IS_ON_SALE'], [car_01.brand, car_01.model, car_01.IS_ON_SALE])
-# Car.export_to_file_static(rf'/home/darek/Projects/to_task_102/{Car.export_to_file_static.__name__}',
-#                                 ['Brand', 'Model', 'IS_ON_SALE'], [car_01.brand, car_01.model, car_01.IS_ON_SALE])
-# print(dir(Car))
-# print('Class---------' * 10)
-#
-# # Car.export_to_file_class = export_to_file_class
-# Car.export_to_file_class = types.MethodType(export_to_file_class, Car)
-# Car.export_to_file_class(path=rf'/home/darek/Projects/to_task_102/{Car.export_to_file_class.__name__}')
-# print(dir(Car))
-# print('Instance---------' * 10)
-#
-# # car_01.export_to_file_instance = export_to_file_instance
-# car_01.export_to_file_instance = types.MethodType(export_to_file_instance, car_01)
-# car_01.export_to_file_instance(path=rf'/home/darek/Projects/to_task_102/{car_01.export_to_file_instance.__name__}')
-# print(dir(car_01))
-# print('-' * 50)
-#
-# if hasattr(car_01, 'export_to_file_static') and callable(car_01.export_to_file_static):
-#     print('The object has method: export_to_file_static')
-# if hasattr(car_01, 'export_to_file_class') and callable(car_01.export_to_file_class):
-#     print('The object has method: export_to_file_class')
-# if hasattr(car_01, 'export_to_file_instance') and callable(car_01.export_to_file_instance):
-#     print('The object has method: export_to_file_instance')
-# if hasattr(car_01, 'export_to_file_instancexxx') and callable(car_01.export_to_file_instance):
-#     print('The object has method: export_to_file_instance')
-# else:
-#     print('No such method!!')
+def export_to_file_static(path, header, data):
+    with open(path, 'w') as file:
+        writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(header)
+        writer.writerow(data)
+    # just to see that the function was indeed called:
+    print('>>> This is function export_to_file - static method')
+
+
+def export_to_file_class(cls, path):
+    with open(path, 'w') as file:
+        writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(['Brand', 'Model', 'IS_ON_SALE'])
+        for c in cls.list_of_cars:
+            writer.writerow([c.brand, c.model, c.IS_ON_SALE])
+    # just to see that the function was indeed called:
+    print('>>> This is function export_to_file - class method')
+
+
+def export_to_file_instance(self, path):
+    with open(path, 'w') as file:
+        writer = csv.writer(file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(['Brand', 'Model', 'IS_ON_SALE'])
+        writer.writerow([self.brand, self.model, self.IS_ON_SALE])
+    # just to see that the function was indeed called:
+    print('>>> This is function export_to_file - Instance method')
+
+
+brandOnSale = 'Opel'
+
+
+class Car:
+    number_of_cars = 0
+    list_of_cars = []
+
+    def __init__(self, brand, model, is_airbag_ok, is_painting_ok, is_mechanic_ok, is_on_sale):
+        self.brand = brand
+        self.model = model
+        self.is_airbag_OK = is_airbag_ok
+        self.is_painting_OK = is_painting_ok
+        self.is_mechanic_OK = is_mechanic_ok
+        self.__is_on_sale = is_on_sale
+
+        Car.number_of_cars += 1
+        Car.list_of_cars.append(self)
+
+    def is_damaged(self):
+        return not (self.is_airbag_OK and self.is_painting_OK and self.is_mechanic_OK)
+
+    def get_info(self):
+        print(f'{self.brand} {self.model}'.upper())
+        print(f'Air Bag -ok- {self.is_airbag_OK}')
+        print(f'Painting -ok- {self.is_painting_OK}')
+        print(f'Mechanic -ok- {self.is_mechanic_OK}')
+        print(f'Is on sale? {self.__is_on_sale}')
+        print('-' * 60)
+
+    def __get_is_on_sale(self):
+        return self.__is_on_sale
+
+    def __set_is_on_sale(self, new_is_on_sale_status):
+        if self.brand == brandOnSale:
+            self.__is_on_sale = new_is_on_sale_status
+            print(f'Changing status is_on_sale to {new_is_on_sale_status} for {self.brand}')
+        else:
+            print(f'Cannot change status is_on_sale. Sale is able only for: {brandOnSale}')
+
+    # we will write here the name of the variable by a big letter because we want to make this variable unique.
+    IS_ON_SALE = property(__get_is_on_sale, __set_is_on_sale, None, 'if set to true, the car is available in sale')
+
+
+car_01 = Car('Seat', 'Ibiza', True, True, True, False)
+car_02 = Car('Opel', 'Corsa', True, False, True, True)
+
+print('Static---------' * 10)
+
+Car.export_to_file_static = export_to_file_static
+# export_to_file_static(rf'/home/darek/Projects/to_task_102/{export_to_file_static.__name__}',
+#                       ['Brand', 'Model', 'IS_ON_SALE'], [car_01.brand, car_01.model, car_01.IS_ON_SALE])
+Car.export_to_file_static(rf'/home/darek/Projects/to_task_102/{Car.export_to_file_static.__name__}',
+                          ['Brand', 'Model', 'IS_ON_SALE'], [car_01.brand, car_01.model, car_01.IS_ON_SALE])
+print(dir(Car))
+print('Class---------' * 10)
+
+# Car.export_to_file_class = export_to_file_class
+Car.export_to_file_class = types.MethodType(export_to_file_class, Car)
+Car.export_to_file_class(path=rf'/home/darek/Projects/to_task_102/{Car.export_to_file_class.__name__}')
+print(dir(Car))
+print('Instance---------' * 10)
+
+# car_01.export_to_file_instance = export_to_file_instance
+car_01.export_to_file_instance = types.MethodType(export_to_file_instance, car_01)
+car_01.export_to_file_instance(path=rf'/home/darek/Projects/to_task_102/{car_01.export_to_file_instance.__name__}')
+print(dir(car_01))
+print('-' * 50)
+
+if hasattr(car_01, 'export_to_file_static') and callable(car_01.export_to_file_static):
+    print('The object has method: export_to_file_static')
+if hasattr(car_01, 'export_to_file_class') and callable(car_01.export_to_file_class):
+    print('The object has method: export_to_file_class')
+if hasattr(car_01, 'export_to_file_instance') and callable(car_01.export_to_file_instance):
+    print('The object has method: export_to_file_instance')
+if hasattr(car_01, 'export_to_file_instancexxx') and callable(car_01.export_to_file_instance):
+    print('The object has method: export_to_file_instance')
+else:
+    print('No such method!!')
 
 
 #  Lab
@@ -198,9 +198,8 @@ def export_all_cake_to_html_instance(self, path):
 </table>"""
 
     with open(path, "w") as f:
-        for num, obj in enumerate(self.bakery_offer):
-            content = template.format(obj.name, obj.kind, obj.taste, obj.additives, obj.filling)
-            f.write(content)
+        content = template.format(self.name, self.kind, self.taste, self.additives, self.filling)
+        f.write(content)
 
 
 class Cake:
@@ -292,8 +291,8 @@ print('-' * 60)
 
 # Here we are exporting the first cake from the list of our bakery into the html file using a static method.
 Cake.export_1_cake_to_html = export_1_cake_to_html
-Cake.export_1_cake_to_html(Cake.bakery_offer[0], path=fr'/home/darek/Projects/to_task_102/'
-                                                      fr'{Cake.export_1_cake_to_html.__name__}')
+Cake.export_1_cake_to_html(cake_01, path=fr'/home/darek/Projects/to_task_102/'
+                                         fr'{cake_01.name}')
 print('-' * 60)
 
 # Here we are exporting the list of all cakes in our bakery to the html file using a class method.
@@ -301,11 +300,17 @@ Cake.export_all_cake_to_html_class = types.MethodType(export_all_cake_to_html_cl
 Cake.export_all_cake_to_html_class(path=fr'/home/darek/Projects/to_task_102/'
                                         fr'{Cake.export_all_cake_to_html_class.__name__}')
 print('-' * 60)
-# Here we are exporting the list of all cakes in our bakery to the html file using a class instance.
-Cake.export_all_cake_to_html_instance = types.MethodType(export_all_cake_to_html_instance, Cake)
-# cake_01.export_all_cake_to_html_instance(path=fr'/home/darek/Projects/to_task_102/'
-#                                               fr'{cake_01.export_all_cake_to_html_instance.__name__}')
+
+# Here we are exporting one cake from our bakery to the html file using a class instance.
+Cake.export_all_cake_to_html_instance = types.MethodType(export_all_cake_to_html_instance, cake_01)
+Cake.export_all_cake_to_html_instance(path=fr'/home/darek/Projects/to_task_102/'
+                                           fr'{Cake.export_all_cake_to_html_instance.__name__}')
+print('-' * 60)
+
 # Here we are exporting to different folder separate html files include the name of cakes in its file name
+for c in Cake.bakery_offer:
+    c.export_all_cake_to_html_instance = types.MethodType(export_all_cake_to_html_instance, c)
+
 for c in Cake.bakery_offer:
     c.export_all_cake_to_html_instance(path=fr"/home/darek/Projects/to_task_102/last/{c.name.replace(' ', '_')}")
 

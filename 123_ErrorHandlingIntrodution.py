@@ -33,7 +33,7 @@ def save_url_to_file(url, file_path):
 
 
 url = 'http://www.mobilo24.eu/spis/'
-dir = '/home/darek/Projects/to_task_123'
+dir = '/home/darek/Projects/to_task_123/'
 tmpfile = 'download.tmp'
 file = 'spis.html'
 

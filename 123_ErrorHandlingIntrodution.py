@@ -53,10 +53,9 @@ except Exception as e:
     print(f'Exception {e}')
 
 else:
-    print('Copying from website was successful')
+    print('Copying content from website was successful')
 
 finally:
     if os.path.isfile(tmpfile_path):
         os.remove(tmpfile_path)
-        print(f'File already existed:: {os.path.split(tmpfile_path)[1]}'
-              f' and was deleted.')
+        print(f'File: {os.path.split(tmpfile_path)[1]} was deleted.')

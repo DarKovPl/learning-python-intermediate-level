@@ -1,5 +1,6 @@
 import datetime as dt
 
+
 # net_value = 100
 # gross_value = 120
 # #  net_value must be less or equal to gross_value
@@ -26,7 +27,6 @@ class Trip:
         assert len(self.title) > 0, "Title is empty!"
         assert self.start <= self.end, "Start date is later than end date!"
 
-
     @classmethod
     def publish_offer(cls, tours):
 
@@ -42,7 +42,7 @@ class Trip:
                 list_of_errors.append(f'{tour.symbol} {e}')
 
         assert list_of_errors == [], f'The list of trips has errors: {list_of_errors}'
-        assert list_of_errors > [], 'The offer will be published'
+        print("The offer will be published because the list of trips doesn't have any bugs.")
 
 
 trips = [

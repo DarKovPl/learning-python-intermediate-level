@@ -80,8 +80,8 @@ chosen_option = 0
 while not chosen_option:
 
     try:
-        # here user enters of his choice, but before that he sees the list of option to choose
-        # and its assigned number to written.
+        # here the user enters his choice, but before that he sees the list of
+        # the option to choose and its assigned number to write
         chosen_option = input('Please choose one of the options: \n{}.'
                               '\nEnter the number of your choice here -->'
                               .format('\n'.join(str(num + 1) + elem
@@ -89,10 +89,11 @@ while not chosen_option:
 
         if not chosen_option:
             print('You entered the enter key and program has been closed.')
-            break
+            chosen_option = True
 
         elif 0 < int(chosen_option) <= 3:
             print('You chosen: {0:d}{1:s}'.format(int(chosen_option), option_list[int(chosen_option) - 1]))
+            chosen_option = False
 
         # if value of his choice is improper user will be informed what a mistake he did,
         # and the loop start again

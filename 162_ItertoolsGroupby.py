@@ -23,8 +23,8 @@ path = '/home/darek/Projects'
 
 
 def scan_tree(path):
-    with os.scandir(path) as list:
-        for obj in list:
+    with os.scandir(path) as scan_dir_iter:
+        for obj in scan_dir_iter:
             if obj.is_dir():
                 yield obj
                 yield from scan_tree(obj.path)
@@ -33,13 +33,14 @@ def scan_tree(path):
 
 
 listing = scan_tree(path)
-df = scan_tree(path)
 
 for elem in listing:
     print(elem.path)
 print('-----------')
-df = sorted(df, key=lambda x: x.is_dir())
 
-for bool, elem_1 in it.groupby(df, key=lambda x: x.is_dir()):
+listing = scan_tree(path)
+listing = sorted(listing, key=lambda x: x.is_dir())
+
+for bool_variable, elem_1 in it.groupby(listing, key=lambda x: x.is_dir()):
     print(f'The number of catalogs in {path.rsplit("/")[-1]} is {len(list(elem_1))}'
-          if bool else f'The number of files in {path.rsplit("/")[-1]} is {len(list(elem_1))}')
+          if bool_variable else f'The number of files in {path.rsplit("/")[-1]} is {len(list(elem_1))}')

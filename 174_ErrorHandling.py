@@ -40,24 +40,20 @@ import zipfile
 #
 #     def __exit__(self, exc_type, exc_val, exc_tb):
 #         print('__exit__')
-#         pass
+#         print(f'exc_type={exc_type}')
+#         print(f'exc_val={exc_val}')
+#         print(f'exc_tb={exc_tb}')
+#         if exc_type == PermissionError:
+#             return False
+#         else:
+#             return True
 #
 #
-# ini = IniFile(r'/tmp/my.ini')
-# ini.write_parameter('version', 1)
-# ini.write_parameter('level', 'advanced')
-# ini.save_on_disk()
-#
-# ini_2 = IniFile(r'/tmp/my.ini')
-# print(ini_2.parameters)
-# print(ini_2.read_parameter('version'))
-# print(ini_2.read_parameter('level'))
-#
-#
-# with IniFile(r'/tmp/my.ini') as ini_3:
-#     print(ini_3.parameters)
-#     print(ini_3.read_parameter('version'))
-#     print(ini_3.read_parameter('level'))
+# with IniFile(r'/tmp/my.ini') as my_ini:
+#     my_ini.write_parameter('mode', 'strict')
+#     my_ini.write_parameter('loglevel', 'light')
+#     my_ini.save_on_disk()
+#     print(10/0)
 
 
 # Lab
@@ -87,16 +83,19 @@ class DownloadFileFromSite:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        print(f'exc_type={exc_type}')
+        print(f'exc_val={exc_val}')
+        print(f'exc_tb={exc_tb}')
+        if exc_type == PermissionError or exc_type == zipfile.BadZipfile:
+            return True
+        else:
+            return False
 
 
-path = r'/tmp/'
+path = r'/tmp/to_task_174'   # To raise an Error: r'/tmpwwwww/to_task_174'
+
 web_address = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip'
-
-# test = DownloadFileFromSite(web_address, path)
-# test.download_file()
-# test.save_file_on_disc()
-
+# To raise an Error: https://www.ecb.europa.eu/stats/eurofxref/eurofxrefffffff.zip
 
 with DownloadFileFromSite(web_address, path) as test:
     z = zipfile.ZipFile(io.BytesIO(test.download_file()))

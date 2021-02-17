@@ -62,18 +62,18 @@ class DownloadFileFromSite:
 
     def __init__(self, address, disc_path_for_file):
         self.address = address
-        self.save_on_disk_location = os.path.join(disc_path_for_file, self.get_zip_file_name())
-        self.download_file()
-        self.get_zip_file_name()
+        self.save_on_disk_location = os.path.join(disc_path_for_file, self.get_zip_file_name)
 
+    @property
     def download_file(self):
         r = requests.get(self.address)
         return r.content
 
     def save_file_on_disc(self):
         with open(self.save_on_disk_location, 'wb') as f:
-            f.write(self.download_file())
+            f.write(self.download_file)
 
+    @property
     def get_zip_file_name(self):
         first_pos = str(self.address).rfind('/')
         zip_file_name = str(self.address[first_pos + 1:])
@@ -92,11 +92,16 @@ class DownloadFileFromSite:
             return False
 
 
-path = r'/tmp/to_task_174'   # To raise an Error: r'/tmpwwwww/to_task_174'
+path = r'/tmp/'  # To raise an Error: r'/tmpww/'
 
 web_address = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref.zip'
-# To raise an Error: https://www.ecb.europa.eu/stats/eurofxref/eurofxrefffffff.zip
+# To raise an Error: https://www.ecb.europa.eu/stats/eurofxref/eurofxreffff.zip
+
+# test = DownloadFileFromSite(web_address, path)
+# test.save_file_on_disc()
+
 
 with DownloadFileFromSite(web_address, path) as test:
-    z = zipfile.ZipFile(io.BytesIO(test.download_file()))
+    z = zipfile.ZipFile(io.BytesIO(test.download_file))
     z.extractall(path)
+# To raise an Error without handling: print(10/0)

@@ -10,13 +10,13 @@ This repository shows the progress of learning Python programming.
 ## Technologies
 ***
 A list of technologies used within the project:
-* [Python](https://www.python.org/downloads/release/python-360/): Version 3.6 
+* [Python](https://www.python.org/downloads/release/python-360/): Version 3.6.9 
 ## Code Examples
 ***
 Link to file: https://github.com/DarKowPl/learning-python-intermediate-level/blob/master/09_Generators/159_Itertools.py
 
 Examples of code:
-~~~
+```python
     notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
     
     value_of_song_notes = 4  # Here you can change the number of song notes
@@ -46,14 +46,14 @@ Examples of code:
     for_check_and_print = functools.partial(check_and_print, var_without_rep, var_with_rep)
     
     for_check_and_print(to_factorial(), to_power(), to_div())
-~~~
+```
 ***
 
 Link to file: https://github.com/DarKowPl/learning-python-intermediate-level/blob/master/07_ErrorHandling/129_RaisingExceptions.py
 
 Examples of code:
 
-~~~
+```python
 class Trip:
 
     def __init__(self, symbol, title, start, end):
@@ -101,4 +101,4 @@ try:
 except Exception as e:
     print(f'The error occurred: {e}')
     
-~~~
+```

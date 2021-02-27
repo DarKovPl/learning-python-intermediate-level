@@ -10,7 +10,7 @@ This repository shows the progress of learning Python programming.
 ## Technologies
 ***
 A list of technologies used within the project:
-* [Python](https://www.python.org/downloads/release/python-360/): Version 3.6.9 
+* [Python](https://www.python.org/downloads/release/python-369/): Version 3.6.9 
 ## Code Examples
 ***
 Link to file: https://github.com/DarKowPl/learning-python-intermediate-level/blob/master/09_Generators/159_Itertools.py

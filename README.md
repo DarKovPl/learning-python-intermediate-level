@@ -58,6 +58,9 @@ Link to file: https://github.com/DarKowPl/learning-python-intermediate-level/blo
 Examples of code:
 
 ```python
+import datetime as dt
+
+
 class Trip:
 
     def __init__(self, symbol, title, start, end):

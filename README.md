@@ -17,6 +17,10 @@ Link to file: https://github.com/DarKowPl/learning-python-intermediate-level/blo
 
 Examples of code:
 ```python
+    import itertools as it
+    import functools
+    
+    
     notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
     
     value_of_song_notes = 4  # Here you can change the number of song notes
